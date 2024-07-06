@@ -1,35 +1,50 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Ionicons,FontAwesome } from '@expo/vector-icons';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+        headerShown:false,
+        tabBarLabelStyle: { display: 'none' }, // Hide labels by setting display to none        tabBarStyle: { height: 60},
+        tabBarActiveTintColor: 'black',
+        tabBarInactiveTintColor: 'gray',
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name='home'
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} />,
         }}
       />
-      <Tabs.Screen
-        name="explore"
+        <Tabs.Screen
+        name='explore'
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+          tabBarLabel: 'Explore  ',
+          tabBarIcon: ({ color, size }) => <Ionicons name="search" size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen name='post'
+      options={
+        {
+          tabBarIcon:({color,size})=><FontAwesome name="plus-square-o" size={size} color={color} />
+        }
+      }
+      />
+      <Tabs.Screen name='reels'
+      options={
+        {
+          tabBarIcon:({color,size})=><Ionicons name="play-sharp" size={size} color={color} />
+        }
+      }
+      />
+    
+      <Tabs.Screen
+        name='profile'
+        options={{
+          tabBarLabel: 'Profile  ',
+          tabBarIcon: ({ color, size }) => <Ionicons name="accessibility" size={size} color={color} />,
         }}
       />
     </Tabs>
